@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Employee Database Management System</title>
+</head>
+<body>
+    <div id="app">
+        <header class="header">
+            <div class="header-left">
+                <h1>Employee Database</h1>
+                <p class="header-subtitle">Manage your team efficiently</p>
+            </div>
+            <div class="header-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="totalEmployees">0</span>
+                    <span class="stat-label">Total Employees</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="avgSalary">KSh 0</span>
+                    <span class="stat-label">Avg Salary</span>
+                </div>
+            </div>
+            <button class="add-btn" id="addEmployeeBtn">
+                <span class="btn-icon">+</span> Add Employee
+            </button>
+        </header>
+
+        <div class="controls-bar">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search employees by name..." />
+                <span class="search-icon">🔍</span>
+            </div>
+            <div class="sort-box">
+                <label for="sortSelect">Sort by:</label>
+                <select id="sortSelect">
+                    <option value="name">Name (A-Z)</option>
+                    <option value="nameDesc">Name (Z-A)</option>
+                    <option value="salary">Salary (Low-High)</option>
+                    <option value="salaryDesc">Salary (High-Low)</option>
+                    <option value="age">Age (Young-Old)</option>
+                    <option value="ageDesc">Age (Old-Young)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="emp-container">
+            <div class="emp-list">
+                <h3 class="emp-list-title">Employee List</h3>
+                <div class="emp-list-items" id="employeeList"></div>
+            </div>
+            <div class="emp-detail">
+                <h3 class="emp-detail-title">Employee Information</h3>
+                <div class="emp-detail-info" id="employeeDetail"></div>
+            </div>
+        </div>
+
+        <!-- Add Employee Modal -->
+        <div class="modal" id="addModal">
+            <form class="emp-form" id="addForm">
+                <h2>Add New Employee</h2>
+                <div class="form-row">
+                    <input type="text" name="firstName" placeholder="First Name" required />
+                    <input type="text" name="lastName" placeholder="Last Name" required />
+                </div>
+                <div class="form-row">
+                    <input type="email" name="email" placeholder="Email" required />
+                    <input type="text" name="contactNumber" placeholder="Contact Number" required />
+                </div>
+                <div class="form-row">
+                    <input type="number" name="salary" placeholder="Salary (KSh)" required />
+                    <input type="date" name="dob" placeholder="Date of Birth" class="emp-form-dob" required />
+                </div>
+                <div class="form-row">
+                    <input type="text" name="address" placeholder="Address" required />
+                    <input type="text" name="imageUrl" placeholder="Image URL (Optional)" />
+                </div>
+                <div class="form-actions">
+                    <input type="submit" class="emp-submit" value="Add Employee" />
+                    <button type="button" class="cancel-btn" id="cancelAddBtn">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Edit Employee Modal -->
+        <div class="modal" id="editModal">
+            <form class="emp-form edit-form" id="editForm">
+                <h2>Edit Employee</h2>
+                <input type="hidden" name="editId" id="editId" />
+                <div class="form-row">
+                    <input type="text" name="editFirstName" id="editFirstName" placeholder="First Name" required />
+                    <input type="text" name="editLastName" id="editLastName" placeholder="Last Name" required />
+                </div>
+                <div class="form-row">
+                    <input type="email" name="editEmail" id="editEmail" placeholder="Email" required />
+                    <input type="text" name="editContactNumber" id="editContactNumber" placeholder="Contact Number" required />
+                </div>
+                <div class="form-row">
+                    <input type="number" name="editSalary" id="editSalary" placeholder="Salary (KSh)" required />
+                    <input type="date" name="editDob" id="editDob" placeholder="Date of Birth" required />
+                </div>
+                <div class="form-row">
+                    <input type="text" name="editAddress" id="editAddress" placeholder="Address" required />
+                    <input type="text" name="editImageUrl" id="editImageUrl" placeholder="Image URL (Optional)" />
+                </div>
+                <div class="form-actions">
+                    <input type="submit" class="emp-submit" value="Update Employee" />
+                    <button type="button" class="cancel-btn" id="cancelEditBtn">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Toast Notifications Container -->
+        <div class="toast-container" id="toastContainer"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
